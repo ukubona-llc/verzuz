@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verzuz Harmony Tracker: Mary Mary vs. BeBe & CeCe</title>
+    <style>
+        body { 
+            font-family: system-ui, -apple-system, sans-serif; 
+            background-color: #121212; 
+            color: #e0e0e0; 
+            padding: 2rem; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+        }
+        h2 { color: #ffffff; border-bottom: 1px solid #333; padding-bottom: 10px;}
+        
+        .video-container { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden; 
+            border-radius: 8px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            background: #000;
+            margin-bottom: 2rem;
+        }
+        .video-container iframe { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+        }
+
+        .track-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .track-card {
+            background: #1e1e1e;
+            border-left: 4px solid;
+            padding: 1.5rem;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .winans-card { border-color: #4a90e2; }
+        .mary-card { border-color: #e24a4a; }
+
+        .track-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .track-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        button { 
+            background: #2a2a2a; 
+            color: #fff; 
+            border: 1px solid #555; 
+            padding: 0.5rem 1rem; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            transition: all 0.2s ease; 
+        }
+        button:hover { 
+            background: #fff; 
+            color: #000;
+        }
+
+        .harmony-notes {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #b0b0b0;
+            background: #121212;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+
+        .chord {
+            color: #ffcc00;
+            font-weight: bold;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Verzuz Setlist: Harmonic Analysis</h2>
+    
+    <div class="video-container">
+        <iframe 
+            id="yt-player" 
+            src="https://www.youtube.com/embed/6dQRMxP1r38" 
+            title="YouTube video player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <div class="track-grid">
+
+        <!-- Track 1 -->
+        <div class="track-card winans-card">
+            <div class="track-header">
+                <div class="track-title">BeBe & CeCe: "Close To You"</div>
+                <button onclick="jumpTo(2250)">Play (37:30)</button>
+            </div>
+            <div class="harmony-notes">
+                <strong>Arrangement Notes:</strong> Classic 90s R&B crossover ballad architecture. The keyboardist is leaning heavily into lush Rhodes voicing. Listen for the smooth voice-leading during the turnaround. They sequence through secondary dominants heavily extended with <span class="chord">11ths</span> and <span class="chord">13ths</span> to maintain a modern soul suspension rather than resolving strictly to standard triads. 
+            </div>
+        </div>
+
+        <!-- Track 2 -->
+        <div class="track-card mary-card">
+            <div class="track-header">
+                <div class="track-title">Mary Mary: "Ordinary People"</div>
+                <button onclick="jumpTo(3180)">Play (53:00)</button>
+            </div>
+            <div class="harmony-notes">
+                <strong>Arrangement Notes:</strong> Warryn Campbell's signature production style. The harmonic movement here is less about sweeping chordal changes and more about the tight, aggressive minor-key vamp. The keys are playing rhythmic stabs locking in with the bass on <span class="chord">m11</span> voicings, leaving massive space for the stacked vocal harmonies to dictate the chord qualities. 
+            </div>
+        </div>
+
+        <!-- Track 3 -->
+        <div class="track-card winans-card">
+            <div class="track-header">
+                <div class="track-title">BeBe & CeCe: "I.O.U. Me"</div>
+                <button onclick="jumpTo(3950)">Play (1:05:50)</button>
+            </div>
+            <div class="harmony-notes">
+                <strong>Arrangement Notes:</strong> A masterclass in gospel/pop modulation. Pay attention to the bridge into the final chorus. The band uses a series of <span class="chord">sus4</span> chords resolving to <span class="chord">maj9</span> to lift the progression. The keyboard arrangement utilizes a very distinct 80s/90s layered synth-brass sound, voicing the chords with wide intervals (dropping the 3rd to the bass/tenor register) to make the track sound massive without muddying the vocals.
+            </div>
+        </div>
+
+        <!-- Track 4 -->
+        <div class="track-card mary-card">
+            <div class="track-header">
+                <div class="track-title">Mary Mary: "Shackles (Praise You)"</div>
+                <button onclick="jumpTo(5100)">Play (1:25:00)</button>
+            </div>
+            <div class="harmony-notes">
+                <strong>Arrangement Notes:</strong> This is a completely rhythmic-driven harmonic structure. The defining feature is the minor pentatonic groove. When the band swells, the keyboardist is hitting dominant <span class="chord">7#9</span> and <span class="chord">7b9</span> passing chords—very typical of contemporary black gospel—to create tension right before resolving back to the root minor vamp. The voice-leading in the turnaround is completely dictated by the syncopated kick drum pattern.
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Adjust this if your specific video rip has a different starting countdown length
+        const STREAM_OFFSET_SECONDS = 0; 
+
+        function jumpTo(targetSeconds) {
+            const finalSeconds = targetSeconds + STREAM_OFFSET_SECONDS;
+            const player = document.getElementById('yt-player');
+            player.src = `https://www.youtube.com/embed/6dQRMxP1r38?start=${finalSeconds}&autoplay=1`;
+        }
+    </script>
+
+</body>
+</html>
