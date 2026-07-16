@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verzuz Harmony Tracker: Mary Mary vs. BeBe & CeCe</title>
+    <title>Verzuz Index: Mary Mary vs. BeBe & CeCe</title>
     <style>
         body { 
             font-family: system-ui, -apple-system, sans-serif; 
@@ -13,8 +13,13 @@
             max-width: 1000px; 
             margin: 0 auto; 
         }
-        h2 { color: #ffffff; border-bottom: 1px solid #333; padding-bottom: 10px;}
-        
+
+        header h2 { 
+            color: #ffffff; 
+            border-bottom: 1px solid #333; 
+            padding-bottom: 10px;
+        }
+
         .video-container { 
             position: relative; 
             padding-bottom: 56.25%; 
@@ -25,6 +30,7 @@
             background: #000;
             margin-bottom: 2rem;
         }
+
         .video-container iframe { 
             position: absolute; 
             top: 0; 
@@ -75,6 +81,7 @@
             font-weight: 600; 
             transition: all 0.2s ease; 
         }
+
         button:hover { 
             background: #fff; 
             color: #000;
@@ -88,86 +95,96 @@
             padding: 1rem;
             border-radius: 4px;
         }
-
-        .chord {
-            color: #ffcc00;
-            font-weight: bold;
-            font-family: monospace;
-        }
     </style>
 </head>
 <body>
-
-    <h2>Verzuz Setlist: Harmonic Analysis</h2>
+    <header>
+        <h2>Verzuz Setlist: Harmonic Analysis</h2>
+    </header>
     
-    <div class="video-container">
-        <iframe 
-            id="yt-player" 
-            src="https://www.youtube.com/embed/6dQRMxP1r38" 
-            title="YouTube video player" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-    </div>
-
-    <div class="track-grid">
-
-        <!-- Track 1 -->
-        <div class="track-card winans-card">
-            <div class="track-header">
-                <div class="track-title">BeBe & CeCe: "Close To You"</div>
-                <button onclick="jumpTo(2250)">Play (37:30)</button>
-            </div>
-            <div class="harmony-notes">
-                <strong>Arrangement Notes:</strong> Classic 90s R&B crossover ballad architecture. The keyboardist is leaning heavily into lush Rhodes voicing. Listen for the smooth voice-leading during the turnaround. They sequence through secondary dominants heavily extended with <span class="chord">11ths</span> and <span class="chord">13ths</span> to maintain a modern soul suspension rather than resolving strictly to standard triads. 
-            </div>
+    <main>
+        <div class="video-container">
+            <iframe 
+                id="yt-player" 
+                src="https://www.youtube.com/embed/6dQRMxP1r38" 
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
         </div>
-
-        <!-- Track 2 -->
-        <div class="track-card mary-card">
-            <div class="track-header">
-                <div class="track-title">Mary Mary: "Ordinary People"</div>
-                <button onclick="jumpTo(3180)">Play (53:00)</button>
-            </div>
-            <div class="harmony-notes">
-                <strong>Arrangement Notes:</strong> Warryn Campbell's signature production style. The harmonic movement here is less about sweeping chordal changes and more about the tight, aggressive minor-key vamp. The keys are playing rhythmic stabs locking in with the bass on <span class="chord">m11</span> voicings, leaving massive space for the stacked vocal harmonies to dictate the chord qualities. 
-            </div>
+        
+        <div id="track-grid" class="track-grid">
+            <!-- Dynamically populated by the script below -->
         </div>
-
-        <!-- Track 3 -->
-        <div class="track-card winans-card">
-            <div class="track-header">
-                <div class="track-title">BeBe & CeCe: "I.O.U. Me"</div>
-                <button onclick="jumpTo(3950)">Play (1:05:50)</button>
-            </div>
-            <div class="harmony-notes">
-                <strong>Arrangement Notes:</strong> A masterclass in gospel/pop modulation. Pay attention to the bridge into the final chorus. The band uses a series of <span class="chord">sus4</span> chords resolving to <span class="chord">maj9</span> to lift the progression. The keyboard arrangement utilizes a very distinct 80s/90s layered synth-brass sound, voicing the chords with wide intervals (dropping the 3rd to the bass/tenor register) to make the track sound massive without muddying the vocals.
-            </div>
-        </div>
-
-        <!-- Track 4 -->
-        <div class="track-card mary-card">
-            <div class="track-header">
-                <div class="track-title">Mary Mary: "Shackles (Praise You)"</div>
-                <button onclick="jumpTo(5100)">Play (1:25:00)</button>
-            </div>
-            <div class="harmony-notes">
-                <strong>Arrangement Notes:</strong> This is a completely rhythmic-driven harmonic structure. The defining feature is the minor pentatonic groove. When the band swells, the keyboardist is hitting dominant <span class="chord">7#9</span> and <span class="chord">7b9</span> passing chords—very typical of contemporary black gospel—to create tension right before resolving back to the root minor vamp. The voice-leading in the turnaround is completely dictated by the syncopated kick drum pattern.
-            </div>
-        </div>
-
-    </div>
+    </main>
 
     <script>
-        // Adjust this if your specific video rip has a different starting countdown length
-        const STREAM_OFFSET_SECONDS = 0; 
+        const tracklist = [
+            { artist: "Mary Mary", title: "Believer", time: 0, notes: "Heavy minor vamp. Notice the tight vocal stacking leaving room for the rhythm section." },
+            { artist: "BeBe & CeCe", title: "Close To You", time: 0, notes: "Classic 90s crossover. Lush Rhodes with secondary dominants." },
+            { artist: "Mary Mary", title: "Thankful", time: 0, notes: "Warryn Campbell's signature rhythmic bounce." },
+            { artist: "BeBe & CeCe", title: "Love Said Not So", time: 0, notes: "Watch for the smooth voice-leading in the turnaround." },
+            { artist: "Mary Mary", title: "Ordinary People", time: 0, notes: "Aggressive m11 chord stabs locking with the bass." },
+            { artist: "BeBe & CeCe", title: "Feels Like Heaven", time: 0, notes: "Heavy synth-brass layered voicing, wide intervals." },
+            { artist: "Mary Mary", title: "Survive", time: 0, notes: "Rhythmic-driven harmonic structure." },
+            { artist: "BeBe & CeCe", title: "Change Your Nature", time: 0, notes: "Listen for the diminished passing chords." },
+            { artist: "Mary Mary", title: "What A Friend", time: 0, notes: "Contemporary minor groove." },
+            { artist: "BeBe & CeCe", title: "I.O.U. Me", time: 0, notes: "Masterclass in gospel/pop modulation using sus4 to maj9 resolutions." },
+            { artist: "Mary Mary", title: "I Worship You", time: 0, notes: "Slower tempo, more space for vocal ornamentation." },
+            { artist: "BeBe & CeCe", title: "Don't Cry", time: 0, notes: "Classic gospel ballad architecture." },
+            { artist: "Tina Campbell", title: "Destiny", time: 0, notes: "Solo feature, pushing the vocal range over a steady groove." },
+            { artist: "BeBe & CeCe", title: "Meantime", time: 0, notes: "Deep pocket, relying on bass movement rather than heavy keys." },
+            { artist: "Mary Mary", title: "The Real Party", time: 0, notes: "High energy, syncopated hits." },
+            { artist: "BeBe & CeCe", title: "Celebrate New Life", time: 0, notes: "Upbeat 90s gospel bounce." },
+            { artist: "Mary Mary", title: "He Said", time: 0, notes: "Classic Mary Mary vocal interplay." },
+            { artist: "BeBe & CeCe", title: "If Anything Ever Happened To You", time: 0, notes: "Lush, slow-jam R&B textures." },
+            { artist: "Erica Campbell", title: "Positive", time: 0, notes: "Solo feature, modern contemporary gospel." },
+            { artist: "BeBe & CeCe", title: "Count On Me", time: 0, notes: "Major crossover hit. The harmony here is incredibly pop-structured." },
+            { artist: "Mary Mary", title: "Yesterday", time: 0, notes: "Heavy emotional delivery over a simpler chord structure." },
+            { artist: "BeBe & CeCe", title: "Grace", time: 0, notes: "Focus on the lyrical message with subtle key pads." },
+            { artist: "Mary Mary", title: "The Sound", time: 0, notes: "Rock-infused gospel energy." },
+            { artist: "BeBe & CeCe", title: "Hold Up The Light", time: 0, notes: "Another massive pop/R&B crossover moment." },
+            { artist: "Mary Mary", title: "Can't Give Up Now", time: 0, notes: "Interpolating classic gospel themes into a modern beat." },
+            { artist: "BeBe & CeCe", title: "It's O.K.", time: 0, notes: "Smooth 90s groove." },
+            { artist: "Mary Mary", title: "Get Up", time: 0, notes: "Dance-floor gospel. 4/4 kick dominating the arrangement." },
+            { artist: "BeBe & CeCe", title: "Lost Without You", time: 0, notes: "Ballad with intricate vocal runs." },
+            { artist: "Mary Mary", title: "In the Morning", time: 0, notes: "Classic Warryn Campbell production." },
+            { artist: "BeBe & CeCe", title: "Up Where We Belong", time: 0, notes: "The ultimate 80s/90s power ballad structure." },
+            { artist: "Mary Mary", title: "Walking", time: 0, notes: "Strutting tempo, heavy bassline." },
+            { artist: "BeBe & CeCe", title: "I'll Take You There", time: 0, notes: "Staple Singers cover, deep groove." },
+            { artist: "Mary Mary", title: "Go Get It", time: 0, notes: "Anthemic, high energy." },
+            { artist: "BeBe Winans", title: "He Promised Me", time: 0, notes: "Solo BeBe, traditional gospel elements." },
+            { artist: "Mary Mary", title: "God In Me", time: 0, notes: "Club-ready gospel track. Minimalist chordal movement, maximum rhythm." },
+            { artist: "CeCe Winans", title: "Believe For It", time: 0, notes: "Modern worship anthem. Big, open diatonic chords." },
+            { artist: "Mary Mary", title: "Shackles (Praise You)", time: 0, notes: "The defining hit. Dominant 7#9 and 7b9 passing chords leading back to the minor pentatonic vamp." },
+            { artist: "BeBe & CeCe", title: "Addictive Love", time: 0, notes: "Look out for the sharp-five intervals and complex harmonic suspensions replacing standard V-I resolutions." },
+            { artist: "Mary Mary", title: "Heaven", time: 0, notes: "Closing out with massive vocal stacks." },
+            { artist: "BeBe & CeCe", title: "Heaven", time: 0, notes: "The 90s classic to match." }
+        ];
 
-        function jumpTo(targetSeconds) {
-            const finalSeconds = targetSeconds + STREAM_OFFSET_SECONDS;
-            const player = document.getElementById('yt-player');
-            player.src = `https://www.youtube.com/embed/6dQRMxP1r38?start=${finalSeconds}&autoplay=1`;
-        }
+        const container = document.getElementById('track-grid');
+        const player = document.getElementById('yt-player');
+        const STREAM_OFFSET = 0;
+
+        tracklist.forEach((track, index) => {
+            const card = document.createElement('div');
+            card.className = `track-card ${track.artist.includes('Mary') || track.artist.includes('Campbell') ? 'mary-card' : 'winans-card'}`;
+            
+            card.innerHTML = `
+                <div class="track-header">
+                    <div class="track-title">${index + 1}. ${track.artist}: "${track.title}"</div>
+                    <button onclick="jumpTo(${track.time})">Play</button>
+                </div>
+                <div class="harmony-notes">
+                    <strong>Notes:</strong> ${track.notes}
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        window.jumpTo = function(targetSeconds) {
+            player.src = `https://www.youtube.com/embed/6dQRMxP1r38?start=${targetSeconds + STREAM_OFFSET}&autoplay=1`;
+        };
     </script>
-
 </body>
 </html>
